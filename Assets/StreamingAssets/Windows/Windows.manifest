@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3422847809
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: mainscene/prefabs.ab
+      Dependencies: {}
