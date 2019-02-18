@@ -12,12 +12,15 @@ public class PackAB  {
     static void PackAssetBundle() {
         string outPath =PathTools. GetPackerABPath();
         //这里直接调用就好了，没必要再去做一个工具
-        DeleteAB(outPath);
-        if (!Directory.Exists(outPath)) {
-            Directory.CreateDirectory(outPath);
+        bool ret = EditorUtility.DisplayDialog("MyTool", "确认打包 ？", "YES", "NO");
+        if (ret) {
+            DeleteAB(outPath);
+            if (!Directory.Exists(outPath)) {
+                Directory.CreateDirectory(outPath);
+            }
+            BuildPipeline.BuildAssetBundles(outPath, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
+            AssetDatabase.Refresh();
         }
-        BuildPipeline.BuildAssetBundles(outPath,BuildAssetBundleOptions.None,BuildTarget.StandaloneWindows64);
-        AssetDatabase.Refresh();
     }
 
 
