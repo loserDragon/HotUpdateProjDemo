@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 namespace SUIFW{
+    [XLua.LuaCallCSharp]
     public delegate void DelABLoadComplete(string ABName);
     public class SingleABLoader : System.IDisposable {
 

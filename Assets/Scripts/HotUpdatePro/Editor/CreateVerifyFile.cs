@@ -6,9 +6,11 @@ using SUIFW;
 using System.Collections.Generic;
 
 public class CreateVerifyFile {
+    static string m_ABOutPath;
     [MenuItem("ABTools/CreateVerifyFile")]
     public static void GenerateVerifyFile() {
-        string m_ABOutPath = PathTools.GetPackerABPath();
+        m_ABOutPath = PathTools.GetPackerABPath().Replace("\\","/");
+
         string m_VerifyFileOutPath = m_ABOutPath + "/VerifyFile.txt";
         if (File.Exists(m_VerifyFileOutPath)) {
             File.Delete(m_VerifyFileOutPath);
@@ -70,7 +72,9 @@ public class CreateVerifyFile {
                     if (string.IsNullOrEmpty(item)) {
                         continue;
                     }
-                    string strMD5 = CommonFunc.GenerateMD5Str(item);
+                    Debug.Log("--->"+item);
+                    Debug.Log("--->" + m_ABOutPath + "/" + item);
+                    string strMD5 = CommonFunc.GenerateMD5StrByStream(m_ABOutPath+"/"+item);
                     sw.WriteLine(item+"|"+strMD5);
                 }
             }

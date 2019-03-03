@@ -48,6 +48,10 @@ namespace SUIFW{
                 Debug.LogError(GetType()+ "/LoadAssetbundle()/参数abName不能为空，请检查！");
                 yield break;
             }
+            if (m_DicSingleABLoaderCache.ContainsKey(abName)) {
+                Debug.LogWarning(GetType() + "/LoadAssetbundle()/该ab包已经加载！");
+                yield break;
+            }
 
             if (!m_DicABRelation.ContainsKey(abName)) {
                 ABRelation tmpABRelation = new ABRelation(abName);

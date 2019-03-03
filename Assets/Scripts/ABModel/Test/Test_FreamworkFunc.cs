@@ -15,12 +15,12 @@ namespace SUIFW {
         private void Start() {
 
             //这里要在做一个封装，这个太长了，不是很好
-            MgrAssetBundle.GetInstance().LoadAssetBundlePack(sceneName, abName, OnLoadAssetComplete);
+            ABMgr.GetInstance().LoadAssetBundlePack(sceneName, abName, OnLoadAssetComplete);
             //StartCoroutine(MgrAssetBundle.GetInstance().LoadAssetBundlePack(sceneName, abName,OnLoadAssetComplete));
         }
 
         private void OnLoadAssetComplete(string ABName) {
-            UnityEngine.Object tmpObj = MgrAssetBundle.GetInstance().LoadAsset(sceneName, abName, resName);
+            UnityEngine.Object tmpObj = ABMgr.GetInstance().LoadAsset(sceneName, abName, resName);
             if (tmpObj!= null) {
                 Instantiate((GameObject)tmpObj);
             }
@@ -29,7 +29,7 @@ namespace SUIFW {
         private void Update() {
             if (Input.GetKeyDown(KeyCode.P)) {
                 Debug.Log("释放场景资源");
-                MgrAssetBundle.GetInstance().DisposeAllAssets(sceneName);
+                ABMgr.GetInstance().DisposeAllAssets(sceneName);
             }
         }
     }
